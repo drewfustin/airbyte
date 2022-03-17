@@ -65,3 +65,17 @@ resources/examples/airflow/logs/*
 
 # Cloud Demo
 !airbyte-webapp/src/packages/cloud/data
+
+# my ignores
+airbyte-api/bin/
+airbyte-commons-cli/bin/
+airbyte-commons-docker/bin/
+airbyte-commons/bin/
+airbyte-config/models/bin/
+airbyte-config/specs/bin/
+airbyte-integrations/bases/base-java/bin/
+airbyte-json-validation/bin/
+airbyte-notification/bin/
+airbyte-protocol/models/bin/
+airbyte-queue/bin/
+airbyte-scheduler/models/bin/

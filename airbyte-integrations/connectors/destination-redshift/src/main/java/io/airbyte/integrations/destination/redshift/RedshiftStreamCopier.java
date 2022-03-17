@@ -102,11 +102,12 @@ public class RedshiftStreamCopier extends S3StreamCopier {
   public void removeFileAndDropTmpTable() throws Exception {
     super.removeFileAndDropTmpTable();
     if (manifestFilePath != null) {
-      LOGGER.info("Begin cleaning s3 manifest file {}.", manifestFilePath);
-      if (s3Client.doesObjectExist(s3Config.getBucketName(), manifestFilePath)) {
-        s3Client.deleteObject(s3Config.getBucketName(), manifestFilePath);
-      }
-      LOGGER.info("S3 manifest file {} cleaned.", manifestFilePath);
+      // LOGGER.info("Begin cleaning s3 manifest file {}.", manifestFilePath);
+      // if (s3Client.doesObjectExist(s3Config.getBucketName(), manifestFilePath)) {
+      //   s3Client.deleteObject(s3Config.getBucketName(), manifestFilePath);
+      // }
+      // LOGGER.info("S3 manifest file {} cleaned.", manifestFilePath);
+      LOGGER.info("Don't clean S3 manifest file {}.", manifestFilePath);
     }
   }
 
