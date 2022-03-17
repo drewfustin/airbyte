@@ -150,6 +150,7 @@ public class RedshiftStreamCopier extends S3StreamCopier {
    * @param manifestPath the path in S3 to the manifest file
    */
   private void executeCopy(final String manifestPath) {
+    LOGGER.info("Begin copy of {} to tmp table {} in destination for stream {}.", manifestFilePath, tmpTableName, streamName);
     final var copyQuery = String.format(
         "COPY %s.%s FROM '%s'\n"
             + "CREDENTIALS 'aws_access_key_id=%s;aws_secret_access_key=%s'\n"
@@ -164,6 +165,7 @@ public class RedshiftStreamCopier extends S3StreamCopier {
         s3Config.getBucketRegion());
 
     Exceptions.toRuntime(() -> db.execute(copyQuery));
+    LOGGER.info("Copy of {} to tmp table {} in destination for stream {} complete.", manifestFilePath, tmpTableName, streamName);
   }
 
 }
