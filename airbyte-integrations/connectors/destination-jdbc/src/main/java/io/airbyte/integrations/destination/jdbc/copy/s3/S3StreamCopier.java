@@ -129,12 +129,14 @@ public abstract class S3StreamCopier implements StreamCopier {
 
   @Override
   public void closeNonCurrentStagingFileWriters() throws Exception {
+    LOGGER.info("I'm in the bad place.");
     Set<String> removedKeys = new HashSet<>();
     for (String key : activeStagingWriterFileNames) {
       if (!key.equals(currentFile)) {
         stagingWritersByFile.get(key).close(false);
         stagingWritersByFile.remove(key);
         removedKeys.add(key);
+	LOGGER.info("The bad place removed key {}.", key);
       }
     }
     activeStagingWriterFileNames.removeAll(removedKeys);
@@ -199,6 +201,7 @@ public abstract class S3StreamCopier implements StreamCopier {
       }
     }
 
+    LOGGER.info("YOU ARE HERE <---------------------------------");
     LOGGER.info("Begin cleaning {} tmp table in destination.", tmpTableName);
     sqlOperations.dropTableIfExists(db, schemaName, tmpTableName);
     LOGGER.info("{} tmp table in destination cleaned.", tmpTableName);
